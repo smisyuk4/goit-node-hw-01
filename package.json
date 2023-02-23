@@ -1,0 +1,27 @@
+{
+  "name": "goit-node-hw-01",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smisyuk4/goit-node-hw-01.git"
+  },
+  "author": "Sergiy Misyuk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/smisyuk4/goit-node-hw-01/issues"
+  },
+  "homepage": "https://github.com/smisyuk4/goit-node-hw-01#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
+  }
+}
