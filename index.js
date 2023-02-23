@@ -1,4 +1,4 @@
 const contacts = require('./contacts.js')
 
 // contacts.listContacts()
-contacts.getContactById(10)
+contacts.getContactById(11)

@@ -12,7 +12,14 @@ function listContacts() {
 function getContactById(contactId) {
     fs.readFile(contactsPath)
         .then(data => {
-            const contact = data.map(item => item.id === contactId)            
+            const arr = JSON.parse(data)
+
+            if(contactId > arr.length){
+                console.log("id not correct")
+                return
+            }            
+
+            const contact = arr.find(item => item.id == contactId)   
             console.log(contact)
         })                        
         .catch(err => console.log(err.message));
