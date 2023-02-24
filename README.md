@@ -1,15 +1,13 @@
 ## Результат роботи функцій
 
 **list**
-![list](https://ibb.co/dLCPKr5)
+![list](https://i.ibb.co/mXZ9zGc/list.jpg)
 
 **get**
-![get](https://ibb.co/wYVmkDy)
-
+![get](https://i.ibb.co/HX68Sm7/get.jpg)
 
 **remove**
-![remove](https://ibb.co/wrDXjLm)
-
+![remove](https://i.ibb.co/JFX4gdJ/remove.jpg)
 
 **add**
-![add](https://ibb.co/30h6zVq)
+![add](https://i.ibb.co/nDkdC4v/add.jpg)
