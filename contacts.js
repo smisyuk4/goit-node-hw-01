@@ -1,15 +1,23 @@
 const path = require('path')
 const fs = require('fs').promises
+const colors = require('colors');
 
 const contactsPath  = path.join('db', 'contacts.json')
+
+async function writeContact(path, content) {
+    try{
+        await fs.writeFile(path, JSON.stringify(content))   
+    } catch (error) {
+        console.log(error.message)
+    }
+}
 
 async function listContacts() {
     try{
         let data = await fs.readFile(contactsPath)
         data = JSON.parse(data)
 
-        console.log('current contact list: ')
-        console.table( data)
+        console.table(data)
         return data
         
     } catch (error) {
@@ -19,13 +27,12 @@ async function listContacts() {
 
 async function getContactById(contactId) {
     try {
-        let data = await fs.readFile(contactsPath)
-        data = JSON.parse(data)
+        const data = await listContacts() 
 
         const contact = data.find(({id}) => id == contactId)   
 
         if(!contact){            
-            return console.log('Sorry contact not found')
+            return console.log('Sorry contact not found'.underline.red)
         }
 
         console.table(contact)        
@@ -37,30 +44,27 @@ async function getContactById(contactId) {
 }
 
 async function removeContact(contactId) {
- try {
-    let data = await fs.readFile(contactsPath)
-        data = JSON.parse(data)
+    try {
+        const data = await listContacts() 
 
         if (!data.some(({id}) => id == contactId)){
-            return console.log('Sorry id not found')
+            return console.log('Sorry id not found'.underline.red)
         }
 
-    let newArr = data.filter(({id}) => id != contactId)
-    await fs.writeFile(contactsPath, JSON.stringify(newArr))
+        let newArr = data.filter(({id}) => id != contactId)
 
-    let checkData = await fs.readFile(contactsPath)
-    data = JSON.parse(checkData)
-    
-    console.log('this is new contacts list:')
-    console.table(data)
- } catch (error){
-    console.log(error.message)
- }
+        await writeContact(contactsPath, newArr)
+     
+        console.log('this is new contacts list:'.underline.green)
+        console.table(newArr)
+    } catch (error){
+        console.log(error.message)
+    }
 }
 
 async function addContact(name, email, phone) {
     if (name === '' || email === '' || phone === ''){
-        return console.log('Sorry empty value')
+        return console.log('Sorry empty value'.underline.red)
     }
 
     const data = await listContacts() 
@@ -75,10 +79,10 @@ async function addContact(name, email, phone) {
     }
 
     const newArr = [...data, newContact]
-
+    console.log('this is new contacts list:'.underline.green)
+    console.table(newArr)
     try {
-        await fs.writeFile(contactsPath, JSON.stringify(newArr))
-        await listContacts() 
+        await writeContact(contactsPath, newArr)
     } catch (error) {
         console.log(error.message)
     }
